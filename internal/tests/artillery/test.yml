@@ -1,0 +1,13 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 30
+      arrivalRate: 10
+      name: "Load test at 10 RPS"
+
+scenarios:
+  - flow:
+      - post:
+          url: "/api/v1/wallets/0494ee7b-e96a-42f7-9a45-3670161185c4/deposit"
+          json:
+            amount: 50

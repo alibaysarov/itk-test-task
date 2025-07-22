@@ -1,0 +1,53 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.cov
+
+# Dependency directories (remove the comment below if you use Go modules)
+/vendor/
+
+# Go workspace file
+go.work
+
+# IDE/editor configs
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Database
+*.db
+*.sqlite
+
+# Migrations (compiled or temp files)
+*.lock
+
+# Env files
+.env
+.env.*
+
+# Test cache
+*.testcache
+
+# Coverage
+coverage.out
+
+# Misc
+node_modules/ 

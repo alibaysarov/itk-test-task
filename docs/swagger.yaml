@@ -1,0 +1,133 @@
+basePath: /api/v1
+definitions:
+  controllers.DepositRequest:
+    properties:
+      amount:
+        type: integer
+    required:
+    - amount
+    type: object
+  controllers.WithdrawRequest:
+    properties:
+      amount:
+        type: integer
+    required:
+    - amount
+    type: object
+  models.Wallet:
+    properties:
+      amount:
+        type: integer
+      id:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: API for wallet operations
+  title: ITK Wallet API
+  version: "1.0"
+paths:
+  /wallets/{walletId}:
+    get:
+      description: Получить информацию о кошельке по ID
+      parameters:
+      - description: ID кошелька
+        in: path
+        name: walletId
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Wallet'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить кошелек
+      tags:
+      - wallets
+  /wallets/{walletId}/deposit:
+    post:
+      description: Пополнить кошелек на сумму
+      parameters:
+      - description: ID кошелька
+        in: path
+        name: walletId
+        required: true
+        type: string
+      - description: Сумма для пополнения
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.DepositRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Пополнить кошелек
+      tags:
+      - wallets
+  /wallets/{walletId}/withdraw:
+    post:
+      description: Снять средства с кошелька
+      parameters:
+      - description: ID кошелька
+        in: path
+        name: walletId
+        required: true
+        type: string
+      - description: Сумма для снятия
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.WithdrawRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Снять средства
+      tags:
+      - wallets
+swagger: "2.0"
