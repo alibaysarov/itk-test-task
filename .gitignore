@@ -20,7 +20,7 @@ go.work
 .idea/
 .vscode/
 *.swp
-
+.env
 # Logs
 *.log
 
