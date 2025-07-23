@@ -2,15 +2,15 @@ package internal
 
 import (
 	"database/sql"
-	_ "github.com/lib/pq"
 	"log"
-	"os"
+
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
-func InitDB() *sql.DB {
+func InitDB(connStr string) *sql.DB {
 	_ = godotenv.Load()
-	connStr := os.Getenv("DATABASE_URL")
+	//connStr := os.Getenv("DATABASE_URL")
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatalf("failed to connect to db: %v", err)

@@ -4,6 +4,7 @@ import (
 	"itk/internal"
 	"itk/internal/controllers"
 	wallet_repository "itk/internal/repositories"
+	"os"
 
 	_ "itk/docs"
 
@@ -18,7 +19,8 @@ import (
 // @BasePath /api/v1
 
 func main() {
-	db := internal.InitDB()
+	connStr := os.Getenv("DATABASE_URL")
+	db := internal.InitDB(connStr)
 	repo := wallet_repository.NewWalletRepository(db)
 	walletController := &controllers.WalletController{Repo: repo}
 

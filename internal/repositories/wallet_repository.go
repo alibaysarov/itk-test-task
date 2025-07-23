@@ -1,4 +1,4 @@
-package wallet_repository
+package repository
 
 import (
 	"context"
@@ -13,6 +13,15 @@ type WalletRepository struct {
 
 func NewWalletRepository(db *sql.DB) *WalletRepository {
 	return &WalletRepository{db: db}
+}
+
+func (r *WalletRepository) CreateWallet(w *models.Wallet) (*models.Wallet, error) {
+	if err := r.db.QueryRow(
+		"INSERT INTO wallets (amount) VALUES ($1) RETURNING id",
+		w.Amount).Scan(&w.ID); err != nil {
+		return nil, err
+	}
+	return w, nil
 }
 
 // GetWallet возвращает информацию о кошельке по ID
